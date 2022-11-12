@@ -6,6 +6,7 @@ var cors = require('cors')
 const serverless = require("serverless-http");
 const port = 3001;
 const router = express.Router();
+const nodeExternals = require('webpack-node-externals');
 
 app.use(cors())
 let users = []
@@ -74,3 +75,6 @@ server.listen(port, () => {
 
 module.exports = app;
 module.exports.handler = serverless(app);
+module.exports = {
+  externals: [nodeExternals()],
+};
